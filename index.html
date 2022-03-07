@@ -9,7 +9,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-        <title>Document</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+
+        <title>Tenkiebox</title>
     </head>
     
     <script>
@@ -31,7 +37,7 @@
               }
             },
             fontSize: {
-                '6xl': '4rem',
+                'text-2xl': '14rem',
                 '16md': '16px',
               }
           }
@@ -39,6 +45,21 @@
       </script>
 
       <style>
+
+          body {
+            min-width: 300px;
+          }
+
+          h2 {
+            font-size: calc(38px + (45 - 38) * ((100vw - 300px) / (1600 - 300))) !important;
+            font-family: 'Oswald', sans-serif;
+          }
+
+          h3 {
+            font-size: calc(28px + (32 - 28) * ((100vw - 300px) / (1600 - 300))) !important;
+            font-family: 'Oswald', sans-serif !important;
+          }
+
           .main-container {
             width: 100%;
           }
@@ -51,12 +72,12 @@
             flex-direction: column-reverse;
           }
 
-          .shop {
+          #shop {
             transition: all 0.5s ease;
           }
 
-          .shop:hover {
-            
+          #shop:hover {
+            color: yellow;
             border-bottom: 1px solid yellow;
           }
 
@@ -65,110 +86,369 @@
             top: 0;
             width: 100%;
           } */
+
+          @media(max-width:1024px) {
+
+            .nav-desktop {
+              display: none !important;
+            }
+
+          }
+
+          @media(min-width:1025px) {
+            .nav-medium {
+              display: none !important;
+            }
+          }
+
+          @tailwind base;
+
+          @layer base {
+            h1 {
+              @apply text-2xl;
+            }
+            h2 {
+              @apply text-xl;
+            }
+            h3 {
+              @apply text-lg;
+            }
+          
+          }
+
+
+            /*burger menu*/
+            .boo {
+                position: relative;
+                float: left;
+                width: calc(100% - 20px);
+                text-align: center;
+                margin: 20px 0 0 0;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 400;
+                color: #333;
+            }
+
+
+            /*--------------------------------------
+            Animation Magic, animations won't occur
+            on IE9 and before and Opera Mini
+            --------------------------------------*/
+            *,
+            *:before,
+            *:after {
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+                box-sizing: border-box;
+            }
+
+            /*==============================================================================
+            The burger icon with it's animation. Uses the checked property of a checkbox
+            in order to make the animation happen as well as control the next elements
+            I've used classes because of the + css selector, which will only ever animate
+            the next label element. Does not work on IE8 or below and opera mini since
+            they don't support the :checked selector.
+            ==============================================================================*/
+            .burger-check {
+                display: none;
+            }
+
+            /*--------------------------------------
+            Sets the actionable area for the burger
+            including a label for usability
+            --------------------------------------*/
+            .burger {
+                position: relative;
+                float: left;
+                /* margin-left: 10px; */
+                width: 60px;
+                /* height: 60px; */
+                cursor: pointer;
+            }
+
+            .burger:after {
+                position: absolute;
+                bottom: 7px;
+                left: 0px;
+                width: 100%;
+                text-align: center;
+                font-size: 13px;
+            }
+
+            /*--------------------------------------
+            Creates the look of the burger icon
+            using the inner span and pseudo-elements
+            --------------------------------------*/
+            .burger span,
+            .burger span:before,
+            .burger span:after {
+                position: absolute;
+                left: 10px;
+                top: 22px;
+                width: 40px;
+                height: 4px;
+                background: rgb(241, 106, 106);
+                border-radius: 0.2em;
+            }
+
+            /* Reset the left and create the pseudo-element */
+            .burger span:before,
+            .burger span:after {
+                content: '';
+                left: 0;
+            }
+
+            /* Top bar position */
+            .burger span:before {
+                top: -8px;
+            }
+
+            /* Bottom bar position */
+            .burger span:after {
+                top: 8px;
+            }
+
+            /* Get rid of more on action (IE9 or higher) */
+            .burger-check:checked + .burger:after {
+                content: '';
+            }
+            /* Get rid of the middle bar on action (IE9 or higher) */
+
+            .burger-check:checked + .burger span {
+                height: 0;
+                width: 0;
+            }
+
+            /* Moves the top and bottom bars to the middle on action (IE9 or higher) */
+            .burger-check:checked + .burger span:before,
+            .burger-check:checked + .burger span:after {
+                top: 6px;
+            }
+
+            /* Rotates the top bar on action with full browser support (IE9 or higher) */
+            .burger-check:checked + .burger span:before {
+                -webkit-transform: rotate(225deg);
+                -ms-transform: rotate(225deg);
+                transform: rotate(225deg);
+            }
+
+            /* Rotates the bottom bar on action with full browser support (IE9 or higher) */
+            .burger-check:checked + .burger span:after {
+                -webkit-transform: rotate(-225deg);
+                -ms-transform: rotate(225deg);
+                transform: rotate(-225deg);
+            }
+
+            /*==============================================================================
+            Simple reveal (IE9 or higher)
+            ==============================================================================*/
+            span.boo {
+                width: auto;
+                margin-top: 0;
+                line-height: 60px;
+                height: 0;
+                overflow: hidden;
+            }
+
+            /* Reveals Boo! (IE9 or higher) */
+            #main-nav-test:checked ~ .boo {
+                height: 50px;
+            }
+
+            /*==============================================================================
+            Simple mobile menu opening and closing (IE9 or higher)
+            ==============================================================================*/
+            .a-header {
+                position: relative;
+                float: left;
+                width: calc(100% - 20px);
+                margin: 0;
+                min-height: 50px;
+                /* background: #eee; */
+                overflow: hidden;
+            }
+
+            .a-header ul {
+                position: relative;
+                float: left;
+                width: 100%;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .a-header ul a {
+                position: relative;
+                float: left;
+                width: 100%;
+                height: 0;
+                line-height: 50px;
+                padding: 0 15px;
+                text-decoration: none;
+                overflow: hidden;
+                color: #333;
+                text-align: left;
+            }
+
+            .a-header ul a:hover,
+            .a-header ul a:active,
+            .a-header ul a:focus,
+            .a-header ul a:visited {
+                text-decoration: none;
+                background: #fff;
+                border-bottom-color: #08c;
+            }
+
+            /* Animate height of 'a' element in order to reveal the menu on check (IE9 or higher) */
+            /* #main-nav:checked ~ ul a {
+                height: 50px;
+            } */
+
          
-      </style>
+
+  /*slider*/
+</style>
 
   <body class="bg-body main-container flex flex-col justify-center text-white font-poppins">
 
     <header class="headernew flex items-center flex-col" >
 
-        <div class="flex justify-center py-4 px-36 w-full">
-            <div class="w-1/3">
-              <img src="img/MagnifyingGlass_light.png" alt="">
-            </div>
+      <div class="flex items-center flex-col w-full nav-desktop">
 
-            <div class="w-1/3 flex justify-center">
-              <img src="img/tb-logo.png" class="w-48 h-14" alt="">
-            </div>
-            
-            <div class="w-1/3 flex justify-end">
-              <img src="img/User_light_hs.png" class="h-6 mr-6" alt="">
-              <img src="img/heart_fill_light_hs.png" class="h-6 mr-6" alt="">
-              <img src="img/Vector_light_hs.png" class="h-6 mr-6" alt="">
-              <img src="img/ShoppingCart_light_hs.png" class="h-6" alt="">
-            </div>
+        <div class="flex justify-center py-4 w-11/12">
+          <div class="w-1/3 flex">
+            <img src="img/MagnifyingGlass_light.png" class="mt-1 mr-3 h-4" alt="">
+            <p>Search Tenkiebox...</p>
+          </div>
+
+          <div class="w-1/3 flex justify-center">
+            <img src="img/tb-logo.png" class="w-48 h-14" alt="">
+          </div>
+          
+          <div class="w-1/3 flex justify-end">
+            <img src="img/User_light_hs.png" class="h-6 mr-6" alt="">
+            <img src="img/heart_fill_light_hs.png" class="h-6 mr-6" alt="">
+            <img src="img/Vector_light_hs.png" class="h-6 mr-6" alt="">
+            <img src="img/ShoppingCart_light_hs.png" class="h-6" alt="">
+          </div>
         </div> 
 
-        <div class="flex justify-center py-3 border-b border-black w-11/12" >
-            <div class="border-b " >
-              <a href="" class="px-28 py-3 shop">Shop</a>
-              <a href="" class="px-28">Locate</a>
-              <a href="" class="px-28">Read</a>
-              <a href="" class="px-28">VIP</a>
+        <div class="flex justify-center py-3 border-b border-yellow-500 mb-5 w-11/12">
+        
+            <div>
+              <a href="" id="shop" class="px-24 py-3">Shop</a>
             </div>
+             
+            <div>
+              <a href="" id="shop" class="px-24 py-3">Locate</a>
+            </div>
+
+            <div>
+              <a href="" id="shop" class="px-24 py-3">Read</a>
+            </div>
+              
+            <div>
+              <a href="" id="shop" class="px-24 py-3">VIP</a>
+            </div>
+              
         </div>
 
-    </header> 
+      </div>
+
+      <div class="flex justify-between flex-row w-full nav-medium py-2 px-3">
+        <div class="a-header lg:hidden">
+          <input type="checkbox" name="main-nav" id="main-nav" class="burger-check">
+          <label class="burger menu"><span></span></label>
+          <!-- <label for="main-nav" class="burger menu"><span></span></label> -->
+          <!-- <ul>
+              <li><a href="#">Lorem</a></li>
+              <li><a href="#" class="active">Aliquam</a></li>
+              <li><a href="#">Vestibulum</a></li>
+          </ul> -->
+        </div>
+
+        
+
+        <div class="flex items-center">
+          <img src="img/ShoppingCart_light_hs.png" class="h-8" alt="">
+        </div>
+        
+
+      </div>
+
+    </header>
+        
+  </div> 
 
     <!-- <link href="https://cdn.prd.kahaniapp.com/crossoversymmetry/kahani.css" rel="stylesheet">
     <div id="kahani_container" class="kahani-module-container" data-story-url="https://cdn.prd.kahaniapp.com/crossoversymmetry/stories_test.json"></div>
     <script src="https://cdn.prd.kahaniapp.com/crossoversymmetry/kahani.js"></script> -->
 
   
-    <div class="container flex justify-center items-center flex-col al md:flex-row md:items-stretch">
-        <div class="flex bg-lime-600 md:w-3/5">
+    <div class="container flex justify-center items-center flex-col lg:flex-row lg:items-stretch">
+        <div class="flex bg-lime-600 w-full lg:w-3/5">
             <img src="img/pic1.png" alt="">
         </div>
 
-        <div class="flex flex-col bg-white justify-center w-full md:w-2/5 items-center">
-            <h2 class="text-slate-800 mt-5">For your adventures.</h2>      
+        <div class="flex flex-col bg-white justify-center w-full lg:w-2/5 items-center">
+            <h2 class="text-slate-800 mt-5 ">For your adventures.</h2>      
             <a href="#" class="border border-orange-500 text-orange-500 px-8 py-2 mt-5 mb-5">SHOP NOW</a> 
         </div>
     </div>
 
-    <div class="container flex flex-col-reverse justify-center items-center flex-col al md:flex-row md:items-stretch">
-      <div class="flex flex-col bg-white justify-center w-full md:w-2/5 items-center">
+    <div class="container flex flex-col-reverse justify-center items-center flex-col lg:flex-row lg:items-stretch">
+      <div class="flex flex-col bg-white justify-center w-full lg:w-2/5 items-center">
             <h2 class="text-slate-800 mt-5">For everyday life.</h2>
             <a href="#" class="border border-orange-500 text-orange-500 px-8 py-2 mt-5 mb-5">SHOP NOW</a>
       </div>
 
-      <div class="flex flex-col bg-lime-600 md:w-3/5">
+      <div class="flex flex-col bg-lime-600 w-full lg:w-3/5">
         <img src="img/s3.jpg" alt="">
       </div>
     </div>
 
 
-    <div class="container flex justify-center items-center flex-col al md:flex-row md:items-stretch">
-      <div class="flex bg-lime-600 md:w-3/5">
+    <div class="container flex justify-center items-center flex-col lg:flex-row lg:items-stretch">
+      <div class="flex bg-lime-600 w-full lg:w-3/5">
           <img src="img/creativenew.png" alt="">
       </div>
 
-      <div class="flex flex-col bg-white justify-center w-full md:w-2/5 items-center">
+      <div class="flex flex-col bg-white justify-center w-full lg:w-2/5 items-center">
           <h2 class="text-slate-800 mt-5">For your adventures.</h2>      
           <a href="#" class="border border-orange-500 text-orange-500 px-8 py-2 mt-5 mb-5">SHOP NOW</a> 
       </div>
     </div>
 
-    <div class="container flex flex-col-reverse justify-center items-center flex-col al md:flex-row md:items-stretch">
-      <div class="flex flex-col bg-white justify-center w-full md:w-2/5 items-center">
+    <div class="container flex flex-col-reverse justify-center items-center flex-col lg:flex-row lg:items-stretch">
+      <div class="flex flex-col bg-white justify-center w-full lg:w-2/5 items-center">
             <h2 class="text-slate-800 mt-5">For everyday life.</h2>
             <a href="#" class="border border-orange-500 text-orange-500 px-8 py-2 mt-5 mb-5">SHOP NOW</a>
       </div>
-      <div class="flex flex-col bg-lime-600 md:w-3/5">
+      <div class="flex flex-col bg-lime-600 w-full lg:w-3/5">
         <img src="img/LP-13.jpg" alt="">
       </div>
     </div>
 
-    <div class="container flex justify-center items-center flex-col al md:flex-row md:items-stretch">
-      <div class="flex bg-orange-500 flex-col py-9 bg-white justify-center w-full md:w-1/2 items-center md:py-24">
-            <h2 class="text-white">Sign up for our newsletter and</h2>
-            <h2 class="text-white">get 5% off your next purchase.</h2>
+    <div class="container flex justify-center items-center flex-col md:flex-row md:items-stretch">
+      <div class="flex bg-orange-500 flex-col py-7 bg-white justify-center w-full md:w-1/2 items-center md:py-20">
+            <h3 class="text-white">Sign up for our newsletter and</h3>
+            <h3 class="text-white">get 5% off your next purchase.</h3>
       </div>
-      <div class="flex flex-col py-9 items-center w-full bg-orange-500 md:w-1/2 md:items-start md:flex-col md:py-24">
-        <p>Email Address</p>
+      <div class="flex flex-col py-7 items-center w-full bg-orange-500 md:w-1/2 md:items-start md:flex-col md:py-20">
+        <p class="mb-1">Email Address</p>
         
-        <div class="flex flex-col md:flex-row">
-          <input type="text" name="comment" class="w-60 md:w-80">
-          <input type="submit" class="ml-3 bg-gray-600 py-3 px-10" value="SUBMIT">
+        <div class="flex items-center flex-col md:flex-row">
+          <input type="text" name="comment" class="w-60 md:w-80 h-12 mb-3 md:mb-0">
+          <input type="submit" class="md:ml-3 bg-gray-600 py-3 px-10 h-12" value="SUBMIT">
         </div>
       </div>
     </div>
 
    
 
-    <footer class="grid place-content-start bg-white px-5 py-16 md:px-0 md:grid-cols-2 lg:grid-cols-4  md:place-content-start md:px-36">
+    <footer class="grid place-content-start bg-white px-5 py-16 md:px-0 md:grid-cols-2 lg:grid-cols-4  md:place-content-start md:px-24">
 
-      <div class="">
+      <div class="mb-5">
         <img src="img/tb-logo.png" class="w-32 h-12" alt="">
         <p class="text-slate-800 text-xs footer-text mt-5">We are the master & official distributors of:</p>
         <div class="flex mt-2 mb-2">
@@ -187,7 +467,7 @@
         <p class="text-gray-300 footer-text mt-7">© 2021 Tenkiebox</p>
       </div>
 
-      <div class="">
+      <div class="mb-5">
         <p class="text-slate-800 font-bold">CONTACT US</p>
         <div class="flex flex-col mt-5 mb-2">
           <p class="text-slate-800 footer-text mb-1">hello@tenkiebox.com</p>
@@ -204,7 +484,7 @@
         </div>
       </div>
 
-      <div class="">
+      <div class="mb-5">
         <p class="text-slate-800 font-bold">COMPANY</p>
         <div class="flex flex-col mt-5 mb-2">
           <p class="text-slate-800 footer-text mb-1">About Us</p>
@@ -214,7 +494,7 @@
         </div>
       </div>
 
-      <div class="">
+      <div class="mb-5">
         <p class="text-slate-800 font-bold">OUR POLICIES</p>
         <div class="flex flex-col mt-5 mb-2">
           <p class="text-slate-800 footer-text mb-1">Privacy Policy</p>
@@ -257,7 +537,7 @@
   	.kahani-thumbnail-label {
       	margin-top: 10px;
       	width: 110px;
-		font-family: 'Montserrat', sans-serif;
+		    font-family: 'Montserrat', sans-serif;
       	line-height: 20px;
         font-size: 14px;
         font-weight: bold;
@@ -266,17 +546,17 @@
 	}
   
     .kahani-container-overlay {
-    	z-index: 99999;
+    	  z-index: 99999;
 	}
   
   	.kahani-photo-animated-overlay1 {
-		font-family: 'Montserrat', sans-serif;
+		    font-family: 'Montserrat', sans-serif;
         background-color: #000000;
         color: white;
     }
 
     .kahani-photo-animated-overlay2 {
-		font-family: 'Montserrat', sans-serif;
+		    font-family: 'Montserrat', sans-serif;
         background-color: #ffffff;
         color: black;
     }
@@ -284,12 +564,12 @@
     .kahani-story-title-image {
         border: 2px solid #ff0101;
         padding: 2px;
-    	background-color: white;
+    	  background-color: white;
     }
   
     .kahani-cta-button-container button {
   		background-color: #ff0101;
-		font-family: 'Montserrat', sans-serif;
+		  font-family: 'Montserrat', sans-serif;
     }
   
     .kahani-cta-button-container button:hover {
@@ -314,6 +594,16 @@
     }
  
     /*FIXED KAHANI NAVIGATION*/
+    .fixed .headernew {
+              position: fixed;
+              background: #fff;
+              z-index: 9999;
+              top: 0;
+              width: 100%;	
+              background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0.1%, rgba(255, 255, 255, 1) 67.09%);
+              box-shadow: 1px 1px 1px rgba(0,0,0,.2), 2px 2px 2px rgba(0,0,0,.1);
+    }
+
     .fixed .kahani-module-container {
               position: fixed;
               background: #fff;
@@ -349,7 +639,7 @@
 
 <script type="text/javascript">
   
-	const nav = document.querySelector('.kahani-module-container');
+	const nav = document.querySelector('.');
 	const topToNav = nav.offsetTop;
 	const mainPage = document.querySelector('.main-container');
     
@@ -367,47 +657,8 @@
           mainPage.classList.remove('fixed');
 
         }
-     }
-	 window.KahaniModule.onOpen = function() {
-       		  /*to remove chat, newsletter and gift popups on opeing kahani stories*/
-       		  let chatButton = document.querySelector('#chat-button');		
-              let chat = document.querySelector('#giftbox-root');
-              let newsletter = document.querySelector('.needsclick');
-       
-       		  if (chatButton) {
-                  chatButton.style.display = "none";
-              }
-
-              if (chat) {
-                  chat.style.display = "none";
-              }
-       
-              if (newsletter) {
-       			  newsletter.style.display = "none";
-              } 
-
-     }
-	 window.KahaniModule.onClose = function() {
-       		   /*to put back chat, newsletter and gift popups after opeing kahani stories*/
-       		   let chatButton = document.querySelector('#chat-button');     		 
-       		   let chat = document.querySelector('#giftbox-root');
-               let newsletter = document.querySelector('.needsclick');
-       
-       		   if (chatButton) {
-                  chatButton.style.display = "block";
-               }	
-       
-       		   if (chat) {
-                  chat.style.display = "block";
-               }
-       
-       		   if (newsletter) {
-       			  newsletter.style.display = "block";
-               } 
-
        
 	 }
 window.addEventListener('scroll', stickyNav);  
   
-
 </script>

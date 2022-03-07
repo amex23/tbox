@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    .background{
+        background-color: green;
+    }
+
+    /* applied after scroll height reached */
+    .fixed-nav nav {
+              position: fixed;
+              background: #fff;
+              top: 0;
+              width: 100%;	
+              background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0.1%, rgba(255, 255, 255, 1) 67.09%);
+              box-shadow: 1px 1px 1px rgba(0,0,0,.2), 2px 2px 2px rgba(0,0,0,.1);
+    }
+
+</style>
+
+<body class="main-container">
+
+    <nav id="navigation" class="header flex justify-center absolute items-center h-5 py-5">
+        this is a header
+    </nav>
+
+    <div class="flex items-center flex-col" style="background-color:red; height: 150vh;">
+        <p>sdsdds</p>
+        <p>sdsdds</p>
+        <p>sdsdds</p>
+        <p>sdsdds</p>
+        <p>sdsdds</p>
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+  
+    const nav = document.querySelector('#navigation');
+    const navTop = nav.offsetTop;
+
+    function stickyNavigation() {
+    console.log('navTop = ' + navTop);
+    console.log('scrollY = ' + window.scrollY);
+
+    if (window.scrollY >= navTop) {
+            // nav offsetHeight = height of nav
+            document.body.style.paddingTop = nav.offsetHeight + 'px';
+            document.body.classList.add('fixed-nav');
+        } else {
+            document.body.style.paddingTop = 0;
+            document.body.classList.remove('fixed-nav');
+            document.body.classList.add('background');
+        }
+    }
+
+    window.addEventListener('scroll', stickyNavigation);
+
+</script>
